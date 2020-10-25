@@ -1,14 +1,16 @@
 target_triple = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "glfw"
-    location "glfw"
     kind "SharedLib"
     language "C"
 
     targetdir ("bin/"..target_triple.."/%{prj.name}")
     objdir ("bin/obj/"..target_triple.."/%{prj.name}")
 
-    defines "_GLFW_BUILD_DLL"
+    defines {
+        "_GLFW_BUILD_DLL",
+        "_CRT_SECURE_NO_WARNINGS",
+    }
 
     files {
         "include/GLFW/glfw3.h",
@@ -24,7 +26,7 @@ project "glfw"
         "src/window.c",
     }
 
-    includedirs "%{prj.name}/include"
+    includedirs "include"
 
     filter "system:windows"
         defines "_GLFW_WIN32"
