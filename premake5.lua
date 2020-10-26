@@ -1,14 +1,13 @@
 target_triple = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "glfw"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C"
 
     targetdir ("bin/"..target_triple.."/%{prj.name}")
     objdir ("bin/obj/"..target_triple.."/%{prj.name}")
 
     defines {
-        "_GLFW_BUILD_DLL",
         "_CRT_SECURE_NO_WARNINGS",
     }
 
